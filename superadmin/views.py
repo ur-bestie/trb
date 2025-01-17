@@ -37,7 +37,16 @@ def index(request):
     
    
      
-    return render(request,'template/admin_temp/index.html',locals())
+    return render(request,'admin_temp/index.html',locals())
+
+def userkyc(request):
+   x = KYCInfo.objects.all()
+   return render(request,'admin_temp/userkyc.html',locals())
+
+def userkyc_view(request, id):
+   x = KYCInfo.objects.get(id=id)
+   return render(request,'admin_temp/userkyc_view.html',locals())
+
 
 def logout(request):
     auth.logout(request)
@@ -46,14 +55,14 @@ def logout(request):
 @staff_member_required
 def lw(request):
     x = waph.objects.all()
-    return render(request,'template/admin_temp/lw.html',locals())
+    return render(request,'admin_temp/lw.html',locals())
 
 @staff_member_required
 def deposit(request):
     x = depht.objects.all()
 
     u = ucoin.objects.all()
-    return render(request,'template/admin_temp/deposit.html',locals())
+    return render(request,'admin_temp/deposit.html',locals())
 
 @staff_member_required
 def depinfo(request,id):
@@ -71,12 +80,12 @@ def depinfo(request,id):
      x.save()
      return redirect('/superadmin/deposit')
     else:
-     return render(request,'template/admin_temp/depinfo.html',locals())
+     return render(request,'admin_temp/depinfo.html',locals())
 
 @staff_member_required
 def withdraw(request):
    x = withdh.objects.all()
-   return render(request,'template/admin_temp/withdraw.html',locals())
+   return render(request,'admin_temp/withdraw.html',locals())
 
 @staff_member_required
 def withinfo(request,id):
@@ -95,7 +104,7 @@ def withinfo(request,id):
      messages.success(request,'successful')
      return redirect('/superadmin/withdraw')
    else:
-    return render(request,'template/admin_temp/withinfo.html',locals())
+    return render(request,'admin_temp/withinfo.html',locals())
    
 @staff_member_required
 def delete(request,id):
@@ -105,7 +114,7 @@ def delete(request,id):
    return redirect('/superadmin/withdraw')
 def backupt(request):
    x = backt.objects.all()
-   return render(request,'template/admin_temp/backup.html',locals())
+   return render(request,'admin_temp/backup.html',locals())
 
 @staff_member_required
 def backupinfo(request,id):
@@ -124,12 +133,12 @@ def backupinfo(request,id):
      messages.success(request,'successful')
      return redirect('/superadmin/backupt')
    else:
-    return render(request,'template/admin_temp/backupinfo.html',locals())
+    return render(request,'admin_temp/backupinfo.html',locals())
 
 @staff_member_required  
 def backupw(request):
    x = backwh.objects.all()
-   return render(request,'template/admin_temp/backupw.html',locals())
+   return render(request,'admin_temp/backupw.html',locals())
 
 @staff_member_required
 def backupwinfo(request,id):
@@ -148,7 +157,7 @@ def backupwinfo(request,id):
      messages.success(request,'successful')
      return redirect('/superadmin/backupw')
    else:
-    return render(request,'template/admin_temp/backupwinfo.html',locals())
+    return render(request,'admin_temp/backupwinfo.html',locals())
 
 @staff_member_required   
 def addf(request):
@@ -166,7 +175,7 @@ def addf(request):
       ubb.save()
       messages.success(request,'successful')
       return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-   return render(request,'template/admin_temp/addf.html',locals())
+   return render(request,'admin_temp/addf.html',locals())
 
 @staff_member_required
 def adds(request):
@@ -186,7 +195,7 @@ def adds(request):
          ubb.save()
          messages.success(request,'successful')
       return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-   return render(request,'template/admin_temp/adds.html',locals())
+   return render(request,'admin_temp/adds.html',locals())
 
 @staff_member_required
 def addb(request):
@@ -204,7 +213,7 @@ def addb(request):
       ubb.save()
       messages.success(request,'successful')
       return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-   return render(request,'template/admin_temp/addb.html',locals())
+   return render(request,'admin_temp/addb.html',locals())
 
 @staff_member_required
 def addbs(request):
@@ -221,7 +230,7 @@ def addbs(request):
       ubb.save()
       messages.success(request,'successful')
       return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-   return render(request,'template/admin_temp/addbs.html',locals())
+   return render(request,'admin_temp/addbs.html',locals())
 
 @staff_member_required
 def setting(request):
@@ -239,7 +248,7 @@ def setting(request):
       messages.success(request,'successful')
       return redirect('/superadmin/setting')
    else:
-    return render(request,'template/admin_temp/setting.html',locals())
+    return render(request,'admin_temp/setting.html',locals())
    
 @staff_member_required
 def cardmake(request):
@@ -258,11 +267,11 @@ def cardmake(request):
       x.save()
       messages.success(request,'cardcreated successfully')
       return redirect('/superadmin/cardmake')
-   return render(request,'template/admin_temp/cardcreate.html')
+   return render(request,'admin_temp/cardcreate.html')
 
 def cardhis(request):
    x = cardpay.objects.all()
-   return render(request,'template/admin_temp/cardhis.html',locals())
+   return render(request,'admin_temp/cardhis.html',locals())
 
 def cardde(request, id):
    x = cardpay.objects.get(id=id)
@@ -273,8 +282,8 @@ def cardde(request, id):
       uid.save()
       messages.success(request,'successful')
       return redirect('/superadmin/cardhis')
-   return render(request,'template/admin_temp/cardde.html',locals())
+   return render(request,'admin_temp/cardde.html',locals())
 
 def alluser(request):
    x = User.objects.all()
-   return render(request,'template/admin_temp/alluser.html',locals())
+   return render(request,'admin_temp/alluser.html',locals())

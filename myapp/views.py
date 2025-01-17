@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.urls import reverse
 import requests
 import json
+from .forms import KYCForm
 
 # Create your views here.
 
@@ -15,6 +16,19 @@ def index(request):
 
 def a(request):
    return render(request,'user/a.html',locals())
+
+def kycver(request):
+   user = request.user
+   if request.method == 'POST':
+        form = KYCForm(request.POST, request.FILES)
+        if form.is_valid():
+            kyc_info = form.save(commit=False)  # Create instance but don't save to DB yet
+            kyc_info.user = request.user       # Assign the logged-in user
+            kyc_info.save()                    # Now save to the database
+            return redirect('/user')    # Replace 'success_page' with your actual success URL
+   else:
+        form = KYCForm()
+   return render(request,'user/kycver.html', {'form': form})
 
 
 @login_required

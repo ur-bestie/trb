@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--gn9puyz87uwu-np-5ao+($usp!y$tat3yd^$)fh(c-*r$t5vh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['www.trumpledgerbackup.com']
 
 
 # Application definition
@@ -56,7 +56,7 @@ ROOT_URLCONF = 'wba.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,'template','admin_temp'],
+        'DIRS': [os.path.join(BASE_DIR, 'template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'myapp.context_processors.sett',
+                'myapp.context_processors.kyc_processor',
             ],
         },
     },

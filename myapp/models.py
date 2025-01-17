@@ -20,6 +20,19 @@ class settings(models.Model):
     def __str__(self):
        return self.sitename
 
+
+class KYCInfo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    ssn = models.CharField(max_length=11, unique=True)
+    passport = models.FileField(upload_to='kyc_documents/passports/')
+    drivers_license = models.FileField(upload_to='kyc_documents/licenses/')
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"KYC Submission for {self.full_name} ({self.email})"
+
 class coin(models.Model):
     name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='logo/%y')

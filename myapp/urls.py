@@ -18,6 +18,7 @@ urlpatterns = [
    path('card',views.card,name='card'),
    path('myprofile',views.myprofile,name='myprofile'),
    path('profup/<str:id>',views.profup,name='profup'),
+   path('kycver',views.kycver,name='kycver'),
    path('buyc',views.buyc,name='buyc'),
    path('logout',views.logout,name='logout'),
    path('generate_ref_link',views.generate_ref_link,name='generate_ref_link'),

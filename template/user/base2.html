@@ -473,6 +473,7 @@ body {
         </div>
     </header><!-- End Header -->
 
+  {% if kIF %}
     <main id="main" class="dashboard-main">
         <section class="dashboard-section">
 
@@ -648,6 +649,11 @@ body {
 
 </section>
 </main>
+{% else %}
+<script>
+  window.location.href = "/kycver";
+</script>
+{% endif %}
 
 
 
